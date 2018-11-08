@@ -238,5 +238,34 @@ function isYoutube(str) {
 }
 
 
+
+
+
+
+client.on("message", message => {
+    var prefix = "1";
+ if (message.content === "help") {
+      message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail: ');
+  const embed = new Discord.RichEmbed()
+      .setColor("#000000")
+      .setDescription(`
+            اوامر الموسيقى
+❖${prefix}play ~ لتشغيل أغنية برآبط أو بأسم
+❖${prefix}skip ~ لتجآوز الأغنية الحآلية
+❖${prefix}pause ~ إيقآف الأغنية مؤقتا
+❖${prefix}resume ~ لموآصلة الإغنية بعد إيقآفهآ مؤقتا
+❖${prefix}vol ~ لتغيير درجة الصوت 100 - 0
+❖${prefix}stop ~ لإخرآج البوت من الروم
+
+ `)
+   message.author.sendEmbed(embed)
+   
+   }
+   });
+
+
+
+
+
 client.login(process.env.BOT_TOKEN);
 	
