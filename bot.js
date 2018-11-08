@@ -454,6 +454,6 @@ function play(guild, song) {
 
 
 
-client.on('ready',async () => { client.channels.find(ch => ch.id === "اي دي الروم الصوتية" && ch.type === 'voice').join(); });
+client.on('ready',async () => { client.channels.find(ch => ch.id === "509813651428081676" && ch.type === 'voice').join(); });
 
 client.login(process.env.BOT_TOKEN);
