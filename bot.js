@@ -148,6 +148,7 @@ client.on('message', function(message) {
         if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
         message.channel.send('`✔`');
         var server = server = servers[message.guild.id];
+	     dispatcher.stop();
     }
     else if (mess.startsWith(prefix + 'join')) {
         if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
