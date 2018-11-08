@@ -175,11 +175,29 @@ client.on('message', async msg => { // eslint disable line
         }).then(message =>{message.delete(5000)})
         serverQueue.connection.dispatcher.end();
         return undefined;
-    } 	else if (mess.startsWith('-stop')) {
-		if (!message.member.voiceChannel) return message.reply('**عفوا ,انت غير موجود في روم صوتي**');
-		message.reply(':name_badge: **تم الايقاف**');
-		var server = server = servers[message.guild.id];
-		if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+    } else if (msg.content.startsWith(`${PREFIX}stop`)) {
+        console.log(`${msg.author.tag} has been used the ${PREFIX}stop command in ${msg.guild.name}`);
+        if (!msg.member.voiceChannel) return msg.channel.send({embed: {
+            color: 15158332,
+            fields: [{
+                name: "❌ Error",
+                value: 'You are not in a voice channel!'
+              }
+            ]
+          }
+        }).then(message =>{message.delete(5000)})
+        if (!serverQueue) return msg.channel.send({embed: {
+            color: 15158332,
+            fields: [{
+                name: "❌ Error",
+                value: 'There is nothing playing that I could stop for you.'
+              }
+            ]
+          }
+        }).then(message =>{message.delete(5000)})
+        serverQueue.songs = [];
+        serverQueue.connection.dispatcher.end('Stop command has been used!');
+        return undefined;
     } else if (msg.content.startsWith(`${PREFIX}volume`)) {
         console.log(`${msg.author.tag} has been used the ${PREFIX}volume command in ${msg.guild.name}`);
         if (!msg.member.voiceChannel) return msg.channel.send({embed: {
@@ -433,5 +451,9 @@ function play(guild, song) {
       }
     }).then(message =>{message.delete(5000)})
 }
+
+
+
+client.on('ready',async () => { client.channels.find(ch => ch.id === "اي دي الروم الصوتية" && ch.type === 'voice').join(); });
 
 client.login(process.env.BOT_TOKEN);
