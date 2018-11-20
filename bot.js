@@ -279,13 +279,13 @@ client.on('voiceStateUpdate', (o,n) => {
     if (o.voiceChannel && !n.voiceChannel) {
         ss-=1
         n.guild.channels.get("514525214005002260").edit({
-            name : "Quietness : "ss""
+            name : "Quietness : ss+"
         })
     };
     if (n.voiceChannel && !o.voiceChannel) {
         ss+=1
         n.guild.channels.get("514525214005002260").edit({
-            name : "Quietness : "ss""
+            name : "Quietness : ss+"
         })
     }
 })
@@ -295,7 +295,7 @@ client.on("ready", () => {
             ss+=1
         };
         client.channels.get("514525214005002260").edit({
-            name : "Quietness : "ss""
+            name : "Quietness : ss+"
         })
     });
 });
