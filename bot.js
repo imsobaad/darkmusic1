@@ -270,5 +270,42 @@ client.on('ready', () => { //code bot not leave room voice //Bot Is Online
 });
 
 
+
+
+
+var ss = 0;
+ 
+client.on('voiceStateUpdate', (o,n) => {
+    if (o.voiceChannel && !n.voiceChannel) {
+        ss-=1
+        n.guild.channels.get("514525214005002260").edit({
+            name : "Quietness : ss"
+        })
+    };
+    if (n.voiceChannel && !o.voiceChannel) {
+        ss+=1
+        n.guild.channels.get("514525214005002260").edit({
+            name : "Quietness : ss"
+        })
+    }
+})
+client.on("ready", () => {
+    client.guilds.get("509810371385884684").members.forEach(m => {
+        if (m.voiceChannel) {
+            ss+=1
+        };
+        client.channels.get("514525214005002260").edit({
+            name : "Quietness : ss"
+        })
+    });
+});
+
+	
+	
+
+
+
+
+
 client.login(process.env.BOT_TOKEN);
 	
